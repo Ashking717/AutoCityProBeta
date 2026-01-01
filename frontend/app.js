@@ -1479,7 +1479,7 @@ async function editStockItemWithVehicles(itemId) {
     document.getElementById('itemPurchaseRate').value = item.purchase_rate || 0;
     document.getElementById('itemSaleRate').value = item.sale_rate || 0;
     document.getElementById('itemMRP').value = item.mrp || 0;
-    document.getElementById('itemTaxRate').value = item.tax_rate || 18;
+    document.getElementById('itemTaxRate').value = item.tax_rate || 0;
     document.getElementById('itemLocation').value = item.location || '';
     document.getElementById('itemSupplier').value = item.supplier || '';
     

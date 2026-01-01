@@ -35,24 +35,30 @@ db.pragma('journal_mode = WAL');
 console.log('✅ SQLite connected (better-sqlite3):', dbFile);
 
 // Initialize basic schema (will be extended by server.js)
+// NOTE: Keep this minimal - full schema is in server.js
 db.exec(`
   CREATE TABLE IF NOT EXISTS stock_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     item_name TEXT NOT NULL,
     sku TEXT UNIQUE,
     barcode TEXT,
+    oem_part_no TEXT,
     category TEXT,
     unit TEXT DEFAULT 'PCS',
     opening_qty REAL DEFAULT 0,
     current_qty REAL DEFAULT 0,
     min_qty REAL DEFAULT 5,
     max_qty REAL DEFAULT 1000,
+    reorder_level REAL DEFAULT 10,
     purchase_rate REAL DEFAULT 0,
     sale_rate REAL DEFAULT 0,
     mrp REAL DEFAULT 0,
     tax_rate REAL DEFAULT 0,
     location TEXT,
     supplier TEXT,
+    average_cost REAL DEFAULT 0,
+    last_purchase_date TEXT,
+    last_purchase_price REAL,
     is_active INTEGER DEFAULT 1,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT DEFAULT CURRENT_TIMESTAMP
